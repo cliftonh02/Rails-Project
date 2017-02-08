@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
-  def new
-    @post = Post.new.all("created_at_DESC")
+  def index
+    @post = Post.all
   end
 
-  def index
-    @posts = Post.all
+  def new
+    @post = Post.new
   end
 
   def create
-    @post = Post.new[permit_post]
+    @post = Post.new
     if @post.save
       flash[:success]= "Success"
       redirect_to post_path(@post)
@@ -21,3 +21,4 @@ end
   def show
     @post = Post.find(params[:id])
   end
+end
